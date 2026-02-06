@@ -7,7 +7,6 @@ import java.util.Map;
 
 public class Restaurant {
     Map<String, List<String>> orders = new HashMap<>();
-    Menu menu = new Menu();
 
     public String printBill(String name) {
         return "Rechnung für: %s\n%s\n%s\n%s\n%s".formatted(
@@ -19,6 +18,8 @@ public class Restaurant {
     }
 
     public String placeOrder(String name, String order) {
+        Menu.checkMenuItem(order);
+
         orders.computeIfAbsent(name, k -> new ArrayList<>()).add(order);
         return String.join("\n", orders.get(name));
     }
@@ -31,7 +32,7 @@ public class Restaurant {
     }
 
     private String printOrderline(String order) {
-        String price = menu.getItemPrice(order);
+        String price = Menu.getItemPrice(order);
         return "%-21s%s CHF".formatted(order, price);
     }
 
@@ -39,7 +40,7 @@ public class Restaurant {
         List<String> customerOrder = orders.computeIfAbsent(name, k -> new ArrayList<>()).stream().toList();
         double total = customerOrder.stream()
                 .mapToDouble(o -> {
-                    String priceStr = menu.getItemPrice(o);
+                    String priceStr = Menu.getItemPrice(o);
                     return priceStr.isEmpty() ? 0.0 : Double.parseDouble(priceStr);
                 })
                 .sum();

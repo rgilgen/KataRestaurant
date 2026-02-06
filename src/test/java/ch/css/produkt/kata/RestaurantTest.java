@@ -73,4 +73,13 @@ class RestaurantTest {
 
         assertEquals(expected, actual);
     }
+
+    @Test
+    void placeOrderMitUngueltigmMenueItem() {
+        String order = "Motorsäge";
+        Restaurant restaurant = new Restaurant();
+
+        assertThrows(IllegalArgumentException.class, () -> restaurant.placeOrder(ANNA, order));
+
+    }
 }

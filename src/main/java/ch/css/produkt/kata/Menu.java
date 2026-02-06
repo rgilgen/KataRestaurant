@@ -3,7 +3,7 @@ package ch.css.produkt.kata;
 import java.util.Map;
 
 public class Menu {
-    Map<String, Double> menu = Map.of(
+    static Map<String, Double> menu = Map.of(
             "Mineralwasser", 4.00,
             "Süssgetränk", 5.00,
             "Kaffee oder Tee", 4.50,
@@ -14,7 +14,7 @@ public class Menu {
             "Tabulé", 18.00
     );
 
-    public String getItemPrice(String order) {
+    public static String getItemPrice(String order) {
         if (order != null) {
             return menu.entrySet().stream()
                     .filter(entry -> entry.getKey().contains(order))
@@ -25,4 +25,13 @@ public class Menu {
         }
         return "";
     }
+
+    public static void checkMenuItem(String menuItem) {
+        menu.keySet()
+                .stream()
+                .filter(k -> k.contains(menuItem))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("Item not on the menu: " + menuItem));
+    }
 }
+

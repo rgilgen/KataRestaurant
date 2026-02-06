@@ -15,9 +15,8 @@ class MenuTest {
             """)
     void test_getItemPrice1() {
         String expected = "";
-        Menu testee = new Menu();
 
-        String result = testee.getItemPrice(null);
+        String result = Menu.getItemPrice(null);
 
         assertEquals(expected, result);
     }
@@ -31,9 +30,8 @@ class MenuTest {
     void test_getItemPrice2() {
         String expected = "4.50";
         String order = "Kaffee";
-        Menu testee = new Menu();
 
-        String result = testee.getItemPrice(order);
+        String result = Menu.getItemPrice(order);
 
         assertEquals(expected, result);
     }
