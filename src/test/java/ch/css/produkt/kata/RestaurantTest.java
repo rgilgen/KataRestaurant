@@ -12,7 +12,7 @@ class RestaurantTest {
 
     @Test
     void printBill() {
-        String expected = "Rechnung für: Anna";
+        String expected = "Rechnung für: Anna\n";
         Restaurant restaurant = new Restaurant();
 
         String actual = restaurant.printBill(ANNA);
@@ -22,11 +22,10 @@ class RestaurantTest {
 
     @Test
     void placeOrder() {
-        String order = "Kaffee";
-        String expected = order;
+        String expected = "Kaffee";
         Restaurant restaurant = new Restaurant();
 
-        String actual = restaurant.placeOrder(ANNA, order);
+        String actual = restaurant.placeOrder(ANNA, expected);
 
         assertEquals(expected, actual);
     }

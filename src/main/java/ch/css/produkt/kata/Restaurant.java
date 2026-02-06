@@ -9,10 +9,7 @@ public class Restaurant {
     Map<String, List<String>> orders = new HashMap<>();
 
     public String printBill(String name) {
-        if(orders.isEmpty()){
-            return "Rechnung für: %s".formatted(name);
-        }
-        return "Rechnung für: %s\n%s".formatted(name, String.join("\n", orders.get(name)));
+        return "Rechnung für: %s\n%s".formatted(name, String.join("\n", orders.getOrDefault(name, List.of())));
     }
 
     public String placeOrder(String name, String order) {
