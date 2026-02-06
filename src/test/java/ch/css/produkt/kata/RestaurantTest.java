@@ -46,7 +46,7 @@ class RestaurantTest {
     void placePrintBillForBerta() {
         String anrede = "Rechnung für: ";
         String order = "Kaffee";
-        String expected = anrede + BERTA + "\n" + order + "\n" + order;
+        String expected = anrede + BERTA + "\n" + order + " 4.50 CHF\n" + order + " 4.50 CHF";
         Restaurant restaurant = new Restaurant();
         restaurant.placeOrder(BERTA, order);
         restaurant.placeOrder(BERTA, order);
