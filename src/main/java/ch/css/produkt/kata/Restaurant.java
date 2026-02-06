@@ -9,11 +9,22 @@ public class Restaurant {
     Map<String, List<String>> orders = new HashMap<>();
 
     public String printBill(String name) {
-        return "Rechnung für: %s\n%s".formatted(name, String.join("\n", orders.getOrDefault(name, List.of())));
+        return "Rechnung für: %s\n%s".formatted(name, String.join("\n", printOrderLines(name)));
     }
 
     public String placeOrder(String name, String order) {
         orders.computeIfAbsent(name, k -> new ArrayList<>()).add(order);
         return String.join("\n", orders.get(name));
+    }
+
+    private List<String> printOrderLines(String name) {
+        return orders.getOrDefault(name, List.of())
+                .stream()
+                .map(this::printOrderline)
+                .toList();
+    }
+
+    private String printOrderline(String order) {
+        return order;
     }
 }
