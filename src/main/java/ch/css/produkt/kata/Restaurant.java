@@ -17,10 +17,11 @@ public class Restaurant {
                 printTotal(name));
     }
 
-    public String placeOrder(String name, String order) {
-        Menu.checkMenuItem(order);
+    public String placeOrder(String name, List<String> orderItems) {
+        orderItems.forEach(Menu::checkMenuItem);
 
-        orders.computeIfAbsent(name, k -> new ArrayList<>()).add(order);
+        orderItems.forEach(order -> orders.computeIfAbsent(name, k -> new ArrayList<>()).add(order));
+
         return String.join("\n", orders.get(name));
     }
 
