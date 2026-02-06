@@ -10,7 +10,12 @@ public class Restaurant {
     Menu menu = new Menu();
 
     public String printBill(String name) {
-        return "Rechnung für: %s\n%s\n%s".formatted(name, String.join("\n", printOrderLines(name)),printTotal(name));
+        return "Rechnung für: %s\n%s\n%s\n%s\n%s".formatted(
+                name,
+                getTrennlinie(),
+                String.join("\n", printOrderLines(name)),
+                getTrennlinie(),
+                printTotal(name));
     }
 
     public String placeOrder(String name, String order) {
@@ -27,7 +32,7 @@ public class Restaurant {
 
     private String printOrderline(String order) {
         String price = menu.getItemPrice(order);
-        return order+ " " + price + " CHF";
+        return "%-21s%s CHF".formatted(order, price);
     }
 
     private String printTotal(String name) {
@@ -39,5 +44,9 @@ public class Restaurant {
                 })
                 .sum();
         return "Total: %.2f CHF".formatted(total);
+    }
+
+    private String getTrennlinie() {
+        return "\n-----------------------------\n";
     }
 }

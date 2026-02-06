@@ -12,7 +12,16 @@ class RestaurantTest {
 
     @Test
     void printBill() {
-        String expected = "Rechnung für: Anna\n\n Total: 0.00 CHF";
+        String expected = """
+        Rechnung für: Anna
+        
+        -----------------------------
+        
+        
+        
+        -----------------------------
+        
+        Total: 0.00 CHF""";
         Restaurant restaurant = new Restaurant();
 
         String actual = restaurant.printBill(ANNA);
@@ -44,10 +53,18 @@ class RestaurantTest {
 
     @Test
     void placePrintBillForBerta() {
-        String anrede = "Rechnung für: ";
         String order = "Kaffee";
-        String total = "Total: 9.00 CHF";
-        String expected = anrede + BERTA + "\n" + order + " 4.50 CHF\n" + order + " 4.50 CHF"+ "\n" + total;
+        String expected = """
+        Rechnung für: Berta
+        
+        -----------------------------
+        
+        Kaffee               4.50 CHF
+        Kaffee               4.50 CHF
+        
+        -----------------------------
+        
+        Total: 9.00 CHF""";
         Restaurant restaurant = new Restaurant();
         restaurant.placeOrder(BERTA, order);
         restaurant.placeOrder(BERTA, order);
