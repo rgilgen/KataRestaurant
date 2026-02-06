@@ -79,3 +79,6 @@ Total:              12.00 CHF
 - Sie lässt sich gut testgetrieben entwickeln.
 - Sie ist in 2h pro Ansatz für einen durchschnittlichen Entwickler lösbar.
 
+# Vorgehen
+
+- Klasse Restaurant mit main Methode
