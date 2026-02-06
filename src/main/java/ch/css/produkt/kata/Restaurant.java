@@ -10,7 +10,7 @@ public class Restaurant {
     Menu menu = new Menu();
 
     public String printBill(String name) {
-        return "Rechnung für: %s\n%s".formatted(name, String.join("\n", printOrderLines(name)));
+        return "Rechnung für: %s\n%s\n%s".formatted(name, String.join("\n", printOrderLines(name)),printTotal(name));
     }
 
     public String placeOrder(String name, String order) {
@@ -28,5 +28,16 @@ public class Restaurant {
     private String printOrderline(String order) {
         String price = menu.getItemPrice(order);
         return order+ " " + price + " CHF";
+    }
+
+    private String printTotal(String name) {
+        List<String> customerOrder = orders.computeIfAbsent(name, k -> new ArrayList<>()).stream().toList();
+        double total = customerOrder.stream()
+                .mapToDouble(o -> {
+                    String priceStr = menu.getItemPrice(o);
+                    return priceStr.isEmpty() ? 0.0 : Double.parseDouble(priceStr);
+                })
+                .sum();
+        return "Total: %.2f CHF".formatted(total);
     }
 }
