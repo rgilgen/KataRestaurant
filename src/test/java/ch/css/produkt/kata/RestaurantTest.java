@@ -7,11 +7,12 @@ import static org.junit.jupiter.api.Assertions.*;
 class RestaurantTest {
 
     public static final String ANNA = "Anna";
+    private static final String BERTA = "Berta";
 
 
     @Test
     void printBill() {
-        String expected = "Rechnung für Anna";
+        String expected = "Rechnung für: Anna";
         Restaurant restaurant = new Restaurant();
 
         String actual = restaurant.printBill(ANNA);
@@ -38,6 +39,20 @@ class RestaurantTest {
 
         restaurant.placeOrder(ANNA, order);
         String actual = restaurant.placeOrder(ANNA, order);
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void placePrintBillForBerta() {
+        String anrede = "Rechnung für: ";
+        String order = "Kaffee";
+        String expected = anrede + BERTA + "\n" + order + "\n" + order;
+        Restaurant restaurant = new Restaurant();
+        restaurant.placeOrder(BERTA, order);
+        restaurant.placeOrder(BERTA, order);
+
+        String actual = restaurant.printBill(BERTA);
 
         assertEquals(expected, actual);
     }
