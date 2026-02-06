@@ -7,6 +7,7 @@ import java.util.Map;
 
 public class Restaurant {
     Map<String, List<String>> orders = new HashMap<>();
+    Menu menu = new Menu();
 
     public String printBill(String name) {
         return "Rechnung für: %s\n%s".formatted(name, String.join("\n", printOrderLines(name)));
@@ -25,6 +26,7 @@ public class Restaurant {
     }
 
     private String printOrderline(String order) {
-        return order;
+        String price = menu.getItemPrice(order);
+        return order+ " " + price + " CHF";
     }
 }

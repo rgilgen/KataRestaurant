@@ -15,6 +15,14 @@ public class Menu {
     );
 
     public String getItemPrice(String order) {
+        if (order != null) {
+            return menu.entrySet().stream()
+                    .filter(entry -> entry.getKey().contains(order))
+                    .map(entry -> String.format("%.2f", entry.getValue()))
+                    .findFirst()
+                    .orElse("");
+
+        }
         return "";
     }
 }

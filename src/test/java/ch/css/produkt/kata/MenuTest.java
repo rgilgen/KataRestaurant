@@ -13,11 +13,27 @@ class MenuTest {
                 WHEN getItemPrice
                 THEN leerer String
             """)
-    void test_getItemPrice() {
+    void test_getItemPrice1() {
         String expected = "";
         Menu testee = new Menu();
 
         String result = testee.getItemPrice(null);
+
+        assertEquals(expected, result);
+    }
+
+    @Test
+    @Description("""
+                002 GIVEN Kaffee order
+                WHEN getItemPrice
+                THEN 4.50
+            """)
+    void test_getItemPrice2() {
+        String expected = "4.50";
+        String order = "Kaffee";
+        Menu testee = new Menu();
+
+        String result = testee.getItemPrice(order);
 
         assertEquals(expected, result);
     }
